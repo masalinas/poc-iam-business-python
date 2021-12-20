@@ -9,10 +9,11 @@ pip3 install django
 django-admin --version
 ```
 
-## install Django Rest framework dependency
+## install some dependencies
 
 ```shell
 pip3 install djangorestframework
+pip3 install django-cors-headers
 ```
 
 ## Create DJango Project with one App inside

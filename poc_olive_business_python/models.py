@@ -18,5 +18,12 @@ class Product(models.Model):
     def __str__(self):
         return self.code
 
+    def as_json(self):
+        return dict(
+            code = self.code,
+            description = self.description,
+            price = self.price,
+            active = self.active)
+
     class Meta:
         db_table = 'Product'        

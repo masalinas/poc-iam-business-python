@@ -16,22 +16,9 @@ from .serializers import ProductSerializer
 class ProductViews(APIView):
     keycloak_roles = {'GET': ['ROLE_ADMIN']}
 
-    def get(self, request):
-        #products = [Product("001", "Apple", 5, True), 
-        #            Product("002", "Banana", 4.3, False),
-        #            Product("003", "Orange", 3.2, True)]
-
-        #data = serialize("json", products)
-
-        #items = Product.objects.all()
-        #serializer = ProductSerializer(items, many=True)  
-        #result = serializer.data      
-
-        #return Response({"status": "success", "data": data}, content_type="application/json", status=status.HTTP_200_OK)
-        
+    def get(self, request):        
         products = [Product("001", "Apple", 5, True).as_json(), 
                     Product("002", "Banana", 4.3, False).as_json(),
                     Product("003", "Orange", 3.2, True).as_json()]
 
-        #return Response({"status": "success", "data": products}, content_type="application/json", status=status.HTTP_200_OK)
         return Response(data=products, content_type="application/json", status=status.HTTP_200_OK)

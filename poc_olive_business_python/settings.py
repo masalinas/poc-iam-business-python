@@ -57,6 +57,7 @@ MIDDLEWARE = [
 KEYCLOAK_EXEMPT_URIS = []
 KEYCLOAK_CONFIG = {
     'KEYCLOAK_SERVER_URL': 'http://localhost:8080/auth',
+    #'KEYCLOAK_SERVER_URL': 'http://keycloak-11:8080/auth',
     'KEYCLOAK_REALM': 'poc',
     'KEYCLOAK_CLIENT_ID': 'business-api-php',
     'KEYCLOAK_CLIENT_SECRET_KEY': '37bb8f5e-c1d6-4c99-a212-83272b8a787b'

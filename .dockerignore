@@ -1,0 +1,5 @@
+captures/
+exports/
+.vscode/
+db.sqlite3
+Dockerfile

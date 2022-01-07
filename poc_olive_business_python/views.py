@@ -14,7 +14,7 @@ from .models import Product
 from .serializers import ProductSerializer
 
 class ProductViews(APIView):
-    keycloak_roles = {'GET': ['ROLE_ADMIN']}
+    keycloak_roles = {'GET': ['ROLE_ADMIN', 'ROLE_OPERATOR']}
 
     def get(self, request):        
         products = [Product("001", "Apple", 5, True).as_json(), 

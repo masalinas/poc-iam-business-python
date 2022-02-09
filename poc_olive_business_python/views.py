@@ -3,15 +3,13 @@
 import json
 
 from django.core.serializers import serialize
-from django.http import HttpResponse, JsonResponse
-from rest_framework.views import APIView
 
+from rest_framework.views import APIView
 from rest_framework import views
 from rest_framework.response import Response
 from rest_framework import status
 
 from .models import Product
-from .serializers import ProductSerializer
 
 class ProductViews(APIView):
     keycloak_roles = {'GET': ['ROLE_ADMIN', 'ROLE_OPERATOR']}

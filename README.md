@@ -11,9 +11,15 @@ django-admin --version
 
 ## install some dependencies
 
+Install Django REST and OpenApi compatibility
+
 ```shell
 pip3 install djangorestframework
 pip3 install django-cors-headers
+//pip3 install drf-yasg
+//pip3 install drf-yasg[validation]
+pip3 install drf-spectacular
+pip3 install drf-problems
 ```
 
 ## Create DJango Project with one App inside
@@ -75,3 +81,30 @@ KEYCLOAK_CONFIG = {
 ```shell
 pip3 install -r path/requirements.txt
 ```
+
+## Start the service
+Start keycloak service with login module theme activated
+username/password: admin/admin
+
+```shell
+docker start keycloak-11-theme
+```
+
+Start business python backend
+```shell
+python3 manage.py runserver
+```
+
+The backend uri its: http://localhost:8001/
+The open api ui uri its: http://localhost:8001/swagger/
+
+Start frontend service
+```shell
+npm start
+```
+
+The Front uri it's: http://localhost:3000/
+
+## Swagger UI
+
+![Swagger UI](captures/swagger_ui.png "Swagger UI")

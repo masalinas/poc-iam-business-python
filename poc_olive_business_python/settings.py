@@ -31,7 +31,9 @@ CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [    
+    #'drf_yasg',
+    'drf_spectacular',
     'poc_olive_business_python',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -137,3 +139,56 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Swagger UI configuration
+"""
+SWAGGER_SETTINGS = {
+   'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}
+"""
+
+KEYCLOAK_URL = "http://keycloak:8080"
+KEYCLOAK_REALM = "poc"
+KEYCLOAK_CLIENT_ID = "front-react"
+KEYCLOAK_CLIENT_SECRET = ""
+
+SIMPLE_JWT = {
+    "ALGORITHM": "RS256",
+    "TOKEN_TYPE_CLAIM": "typ",
+    "AUTH_TOKEN_CLASSES": (
+        "poc_olive_business_python.infrastructure.auth.providers.BearerToken",
+    ),
+    "TOKEN_USER_CLASS": "poc_olive_business_python.infrastructure.auth.providers.KeycloakTokenUser",
+    "USER_ID_CLAIM": "preferred_username",
+    "JWK_URL": f"{KEYCLOAK_URL}/auth/realms/{KEYCLOAK_REALM}/protocol/openid-connect/certs",
+}
+
+REST_FRAMEWORK = {
+    # YOUR SETTINGS
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# Spectacular (A) configuration
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'product Poc API',
+    'DESCRIPTION': 'product Poc API',
+    'VERSION': '1.0.0',
+    # OTHER SETTINGS
+    "SWAGGER_UI_SETTINGS": """{
+        "deepLinking": true,
+        "oauth2RedirectUrl": `${window.location.protocol}//${window.location.host}/api/static/drf_spectacular_sidecar/swagger-ui-dist/oauth2-redirect.html`,
+    }""",
+    "SWAGGER_UI_OAUTH2_CONFIG": {
+        "clientId": KEYCLOAK_CLIENT_ID,
+        "clientSecret": KEYCLOAK_CLIENT_SECRET,
+        "realm": KEYCLOAK_REALM,
+        "appName": KEYCLOAK_CLIENT_ID,
+        "usePkceWithAuthorizationCodeGrant": True,
+    },
+}

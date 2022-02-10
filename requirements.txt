@@ -2,3 +2,5 @@ Django==4.0
 djangorestframework==3.13.1
 django-cors-headers==3.10.1
 django-keycloak-auth==0.9.5
+drf-spectacular==0.21.1
+drf-problems==1.0.4

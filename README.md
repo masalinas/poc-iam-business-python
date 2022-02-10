@@ -16,8 +16,6 @@ Install Django REST and OpenApi compatibility
 ```shell
 pip3 install djangorestframework
 pip3 install django-cors-headers
-//pip3 install drf-yasg
-//pip3 install drf-yasg[validation]
 pip3 install drf-spectacular
 pip3 install drf-problems
 ```

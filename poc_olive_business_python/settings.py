@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,11 +22,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-vf)6_545xt1-rn81fym)ab+hn2%#=8+g9nm^lcss^s=)l33-a+'
+#SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = int(os.environ.get("DEBUG", default=0))
 
 ALLOWED_HOSTS=['*']
+# 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
+# For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
+#ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
@@ -58,13 +65,10 @@ MIDDLEWARE = [
 
 KEYCLOAK_EXEMPT_URIS = []
 KEYCLOAK_CONFIG = {
-    'KEYCLOAK_SERVER_URL': 'http://localhost:8080/auth',
-    #'KEYCLOAK_SERVER_URL': 'http://keycloak-11:8080/auth',
+    'KEYCLOAK_SERVER_URL': 'http://localhost:8080/auth',    
     'KEYCLOAK_REALM': 'poc',
-    'KEYCLOAK_CLIENT_ID': 'business-api-php',
-    #'KEYCLOAK_CLIENT_ID': 'front-react',
-    #'KEYCLOAK_CLIENT_SECRET_KEY': '37bb8f5e-c1d6-4c99-a212-83272b8a787b'
-    'KEYCLOAK_CLIENT_SECRET_KEY': '7db45545-1503-4a13-9262-3235c9cb25b7'    
+    'KEYCLOAK_CLIENT_ID': 'poc-backend',        
+    'KEYCLOAK_CLIENT_SECRET_KEY': '2e55d04c-e694-47fe-87b3-546d8ab180ad'
 }
 
 ROOT_URLCONF = 'poc_olive_business_python.urls'
@@ -155,8 +159,8 @@ SWAGGER_SETTINGS = {
 
 KEYCLOAK_URL = "http://keycloak:8080"
 KEYCLOAK_REALM = "poc"
-KEYCLOAK_CLIENT_ID = "front-react"
-KEYCLOAK_CLIENT_SECRET = ""
+KEYCLOAK_CLIENT_ID = "poc-backend"
+KEYCLOAK_CLIENT_SECRET = "2e55d04c-e694-47fe-87b3-546d8ab180ad"
 
 SIMPLE_JWT = {
     "ALGORITHM": "RS256",
